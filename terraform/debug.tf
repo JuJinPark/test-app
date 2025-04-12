@@ -12,5 +12,5 @@ output "debug_pm_token_id" {
 
 output "debug_pm_password" {
   value     = var.pm_password
-  sensitive = true
+  # /sensitive = true
 }
