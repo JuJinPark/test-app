@@ -4,7 +4,7 @@ terraform {
   required_providers {
     proxmox = {
       source  = "Telmate/proxmox"
-      version = "3.0.1-rc6"
+      version = "3.0.1-rc8"
     }
   }
 }
@@ -24,12 +24,19 @@ resource "proxmox_lxc" "spring_app" {
   cores        = 2
   memory       = 2048
   swap         = 1024
-  rootfs       = "local-lvm:4"
+  rootfs       {
+    storage = "local-lvm"
+    size    = "4G"
+  }
   unprivileged = true
   start        = true
-  net0         = "name=eth0,bridge=vmbr0,ip=dhcp"
+
+  network {
+    name   = "eth0"
+    bridge = "vmbr0"
+    ip     = "dhcp"
+  }
   features {
     nesting = true
   }
-  cicustom = "user=local:snippets/cloud-init.yaml"
 }
