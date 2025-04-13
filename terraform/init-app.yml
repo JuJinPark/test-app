@@ -14,23 +14,14 @@
         state: started
         enabled: true
 
-    - name: Ensure app container is absent (cleanup for idempotency)
-      community.docker.docker_container:
-        name: test-spring-app
-        state: absent
-        force_kill: true
+    - name: Remove existing container if exists (idempotent cleanup)
+      shell: |
+        docker rm -f test-spring-app || true
 
-    - name: Pull app image
-      community.docker.docker_image:
-        name: wnwls1216/test-spring-app
-        tag: latest
-        source: pull
+    - name: Pull latest app image
+      shell: |
+        docker pull wnwls1216/test-spring-app:latest
 
     - name: Run app container
-      community.docker.docker_container:
-        name: test-spring-app
-        image: wnwls1216/test-spring-app:latest
-        state: started
-        restart_policy: unless-stopped
-        published_ports:
-          - "8070:8070"
+      shell: |
+        docker run -d --name test-spring-app -p 8070:8070 wnwls1216/test-spring-app:latest
