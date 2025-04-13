@@ -41,5 +41,5 @@ resource "proxmox_lxc" "spring_app" {
   }
 }
 output "lxc_ip" {
-  value = proxmox_lxc.spring_app.network.ip
+  value = proxmox_lxc.spring_app.network[0].ip
 }
