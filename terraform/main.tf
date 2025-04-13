@@ -41,6 +41,7 @@ resource "proxmox_lxc" "spring_app" {
   features {
     nesting = true
   }
+  //so Terraform can configure SSH access into the LXC container.
   ssh_public_keys = file("~/.ssh/id_rsa.pub")
 }
 output "lxc_ip" {
