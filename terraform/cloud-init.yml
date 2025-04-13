@@ -1,6 +1,0 @@
-#cloud-config
-package_update: true
-packages:
-  - docker.io
-runcmd:
-  - docker run -d --name test-spring-app -p 8070:8070 wnwls1216/test-spring-app:latest

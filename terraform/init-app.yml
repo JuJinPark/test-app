@@ -1,0 +1,21 @@
+- name: Deploy Spring Boot app
+  hosts: spring_lxc
+  become: true
+  tasks:
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+        update_cache: true
+
+    - name: Start Docker
+      systemd:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Pull app image
+      command: docker pull wnwls1216/test-spring-app:latest
+
+    - name: Run app
+      command: docker run -d --name test-spring-app -p 8070:8070 wnwls1216/test-spring-app:latest
