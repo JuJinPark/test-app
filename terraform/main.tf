@@ -41,6 +41,7 @@ resource "proxmox_lxc" "spring_app" {
   features {
     nesting = true
   }
+  ssh_public_keys = file("~/.ssh/id_rsa.pub")
 }
 output "lxc_ip" {
   value = trimsuffix(proxmox_lxc.spring_app.network[0].ip, "/24")
