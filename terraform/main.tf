@@ -43,5 +43,5 @@ resource "proxmox_lxc" "spring_app" {
   }
 }
 output "lxc_ip" {
-  value = proxmox_lxc.spring_app.network[0].ip
+  value = trimsuffix(proxmox_lxc.spring_app.network[0].ip, "/24")
 }
