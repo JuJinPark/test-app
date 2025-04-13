@@ -40,3 +40,6 @@ resource "proxmox_lxc" "spring_app" {
     nesting = true
   }
 }
+output "lxc_ip" {
+  value = proxmox_lxc.spring_app.network.ip
+}
