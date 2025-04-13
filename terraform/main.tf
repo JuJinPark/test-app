@@ -34,7 +34,7 @@ resource "proxmox_lxc" "spring_app" {
   network {
     name   = "eth0"
     bridge = "vmbr0"
-    ip     = "dhcp"
+    ip     = "172.30.1.99"
   }
   features {
     nesting = true
