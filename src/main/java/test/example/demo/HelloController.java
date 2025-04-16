@@ -8,6 +8,6 @@ public class HelloController {
 
     @GetMapping("/")
     public String hello() {
-        return "Hello World terraform&ansible&final&changeTest";
+        return "Hello World Proxmox Test";
     }
 } 
