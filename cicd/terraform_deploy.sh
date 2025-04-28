@@ -11,7 +11,8 @@ terraform init -upgrade
 terraform apply -auto-approve \
   -var "pm_api_url=https://172.30.1.81:8006/api2/json" \
   -var "pm_api_token_id=$PM_TOKEN_ID" \
-  -var "pm_api_token_secret=$PM_TOKEN_SECRET"
+  -var "pm_api_token_secret=$PM_TOKEN_SECRET" \
+  -var "container_password=$APP_CONTAINER_PASSWORD"
 
 echo "🌐 Extracting LXC IP from Terraform output..."
 LXC_IP=$(terraform output -raw lxc_ip)

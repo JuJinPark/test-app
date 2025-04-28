@@ -28,7 +28,10 @@ pipeline {
         }
         stage('Terraform Apply Infra') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'PROXMOX', usernameVariable: 'PM_TOKEN_ID', passwordVariable: 'PM_TOKEN_SECRET')]) {
+                withCredentials([
+                    usernamePassword(credentialsId: 'PROXMOX', usernameVariable: 'PM_TOKEN_ID', passwordVariable: 'PM_TOKEN_SECRET'),
+                    string(credentialsId: 'APP_CONTAINER_PASSWORD', variable: 'APP_CONTAINER_PASSWORD')
+                ]) {
                     sh './cicd/terraform_deploy.sh'
                 }
             }

@@ -20,7 +20,7 @@ resource "proxmox_lxc" "spring_app" {
   hostname     = "spring-app"
   target_node  = "homeserver"
   ostemplate   = "local:vztmpl/ubuntu-24.10-standard_24.10-1_amd64.tar.zst"
-  password     = "changeme"
+  password     = var.container_password
   cores        = 2
   memory       = 2048
   swap         = 1024
