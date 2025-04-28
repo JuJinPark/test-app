@@ -1,6 +1,9 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven 3'   // <-- Use the Maven name you set in Jenkins
+    }
     environment {
         DOCKER_IMAGE = "wnwls1216/test-spring-app:latest"
     }
