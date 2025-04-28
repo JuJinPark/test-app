@@ -2,13 +2,13 @@
   hosts: spring_lxc
   become: true
   vars:
-    app_image: "{{ lookup('env', 'IMAGE_NAME') }}"
+    app_image: "{{ app_image }}"
   tasks:
-    - name: Fail if app_image_name environment variable is not set
+    - name: Fail if app_image variable is not set
       fail:
-        msg: "You must set the app_image_name environment variable!"
-      when: lookup('env', 'app_image_name') == ""
-
+        msg: "You must set the app_image variable!"
+      when: app_image is not defined or app_image == ""
+    
     - name: Install Docker
       apt:
         name: docker.io
