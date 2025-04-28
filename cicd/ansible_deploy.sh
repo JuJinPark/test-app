@@ -4,7 +4,7 @@ set -e  # Exit immediately if any command fails
 echo "📦 Starting Ansible Deployment..."
 cd terraform
 # Load LXC IP from previous step
-LXC_IP=$(cat terraform/lxc_ip.txt)
+LXC_IP=$(cat lxc_ip.txt)
 
 # Create dynamic inventory
 echo "🛠️ Generating Ansible inventory..."
