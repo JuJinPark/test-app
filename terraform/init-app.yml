@@ -1,7 +1,14 @@
 - name: Deploy Spring Boot app
   hosts: spring_lxc
   become: true
+  vars:
+    app_image: "{{ lookup('env', 'IMAGE_NAME') }}"
   tasks:
+    - name: Fail if app_image_name environment variable is not set
+      fail:
+        msg: "You must set the app_image_name environment variable!"
+      when: lookup('env', 'app_image_name') == ""
+
     - name: Install Docker
       apt:
         name: docker.io
@@ -20,8 +27,8 @@
 
     - name: Pull latest app image
       shell: |
-        docker pull wnwls1216/test-spring-app:latest
+        docker pull {{ app_image }}
 
     - name: Run app container
       shell: |
-        docker run -d --name test-spring-app -p 8070:8070 wnwls1216/test-spring-app:latest
+        docker run -d --name test-spring-app -p 8070:8070 {{ app_image }}

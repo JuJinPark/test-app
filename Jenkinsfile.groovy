@@ -35,7 +35,7 @@ pipeline {
         }
         stage('Ansible Deploy') {
             steps {
-                sh './cicd/ansible_deploy.sh'
+                sh './cicd/ansible_deploy.sh $DOCKER_IMAGE'
             }
         }
     }

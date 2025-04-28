@@ -4,7 +4,7 @@ set -e
 IMAGE=$1
 
 if [ -z "$IMAGE" ]; then
-  echo "❌ APP and IMAGE must be provided as arguments."
+  echo "❌ IMAGE must be provided as arguments."
   exit 1
 fi
 
