@@ -35,7 +35,7 @@ resource "proxmox_lxc" "spring_app" {
     name   = "eth0"
     bridge = "vmbr0"
     ip     = "172.30.1.99/24"
-    gw     = "172.30.1.81"
+    gw     = "172.30.1.254"
   }
 
   features {
