@@ -29,11 +29,12 @@ pipeline {
                     sh './cicd/terraform_deploy.sh'
                 }
             }
-            stage('Ansible Deploy') {
-                steps {
-                    sh './cicd/ansible_deploy.sh'
-                }
+        }
+        stage('Ansible Deploy') {
+            steps {
+                sh './cicd/ansible_deploy.sh'
             }
         }
     }
+
 }
