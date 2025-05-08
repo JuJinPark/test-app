@@ -47,3 +47,15 @@ resource "proxmox_lxc" "spring_app" {
 output "lxc_ip" {
   value = trimsuffix(proxmox_lxc.spring_app.network[0].ip, "/24")
 }
+
+resource "null_resource" "init_arp_ping" {
+  depends_on = [proxmox_lxc.spring_app]
+
+  provisioner "local-exec" {
+    command = <<EOT
+      CT_ID=$(pct list | awk '$2 == "spring-app" {print $1}')
+      echo "🏓 Pinging gateway from inside LXC ID $CT_ID..."
+      pct exec $CT_ID -- ping -c 1 172.30.1.254 || true
+    EOT
+  }
+}
