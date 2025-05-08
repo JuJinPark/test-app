@@ -20,6 +20,6 @@ spring-app ansible_host=$LXC_IP ansible_user=root ansible_ssh_private_key_file=/
 EOF
 
 echo "🚀 Running Ansible playbook..."
-ansible-playbook -i inventory.ini init-app.yml -e "app_image=$IMAGE" "lxc_ip=$LXC_IP"
+ansible-playbook -i inventory.ini init-app.yml -e "app_image=$IMAGE" -e "lxc_ip=$LXC_IP"
 
 echo "✅ Ansible deployment completed!"
