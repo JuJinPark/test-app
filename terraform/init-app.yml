@@ -10,11 +10,6 @@
         msg: "You must set the app_image variable!"
       when: app_image is not defined or app_image == ""
 
-    - name: Fail if lxc_ip variable is not set
-      fail:
-        msg: "You must set the lxc_ip variable!"
-      when: lxc_ip is not defined or lxc_ip == ""
-
     - name: ⚡ Ping gateway to populate ARP cache
       shell: ping -c 1 172.30.1.254 || true
       ignore_errors: true
